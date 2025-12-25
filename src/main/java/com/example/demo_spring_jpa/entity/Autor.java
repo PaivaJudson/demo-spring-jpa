@@ -19,7 +19,6 @@ public class Autor implements Serializable {
     @Column(name = "sobrenome", length = 45, nullable = false)
     private String sobrenome;
 
-
     public Long getId() {
         return id;
     }
