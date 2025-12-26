@@ -40,4 +40,13 @@ public class AutorDao {
         return manager.createQuery(query, Autor.class).getResultList();
     }
 
+    @Transactional(readOnly = true)
+    public List<Autor> findAllByNomeOrSobrenome(String expressao){
+        String query = "select a from Autor a "+
+                       "where a.nome like :expressao OR a.sobrenome like :expressao";
+        return manager.createQuery(query, Autor.class)
+                .setParameter("expressao", "%" + expressao +"%")
+                .getResultList();
+    }
+
 }

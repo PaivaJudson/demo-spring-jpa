@@ -42,4 +42,9 @@ public class AutorController {
         return autorDao.findAll();
     }
 
+    @GetMapping("nomeOrsobrenome")
+    public List<Autor> getAutoresByNomeOrSobrenome(@RequestParam String expressao){
+        return autorDao.findAllByNomeOrSobrenome(expressao);
+    }
+
 }
