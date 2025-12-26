@@ -6,6 +6,8 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public class AutorDao {
 
@@ -25,6 +27,17 @@ public class AutorDao {
     @Transactional(readOnly = false)
     public void delete(Long id){
         manager.remove(manager.getReference(Autor.class, id));
+    }
+
+    @Transactional(readOnly = true)
+    public Autor findById(Long id){
+        return manager.find(Autor.class, id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Autor> findAll(){
+        String query = "select a from Autor a";
+        return manager.createQuery(query, Autor.class).getResultList();
     }
 
 }
