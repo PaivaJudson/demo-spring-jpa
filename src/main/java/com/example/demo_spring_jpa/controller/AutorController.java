@@ -5,6 +5,8 @@ import com.example.demo_spring_jpa.entity.Autor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("autores")
 public class AutorController {
@@ -28,6 +30,16 @@ public class AutorController {
     public String remover(@PathVariable Long id){
         autorDao.delete(id);
         return "Autor com o ID "+ id + " foi removido com sucesso!";
+    }
+
+    @GetMapping("{id}")
+    public Autor getById(@PathVariable Long id){
+        return autorDao.findById(id);
+    }
+
+    @GetMapping
+    public List<Autor> getAll(){
+        return autorDao.findAll();
     }
 
 }
