@@ -2,6 +2,8 @@ package com.example.demo_spring_jpa.controller;
 
 import com.example.demo_spring_jpa.dao.AutorDao;
 import com.example.demo_spring_jpa.entity.Autor;
+import com.example.demo_spring_jpa.entity.InfoAutor;
+import com.example.demo_spring_jpa.projection.AutorInfoProjection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,6 +52,21 @@ public class AutorController {
     @GetMapping("total")
     public Long getTotalDeAutores(){
         return autorDao.getTotalElements();
+    }
+
+    @PutMapping("{id}/info")
+    public Autor salvarInfoAutor(@PathVariable Long id, @RequestBody InfoAutor infoAutor){
+        return autorDao.saveInfoAutor(infoAutor, id);
+    }
+
+    @GetMapping("info")
+    public List<Autor> consultarAutoresPorCargo(@RequestParam String expressaoCargo){
+        return autorDao.findByCargo(expressaoCargo);
+    }
+
+    @GetMapping("autor-info")
+    public AutorInfoProjection consultar(@RequestParam Long id){
+        return autorDao.findAutorInfoById(id);
     }
 
 }
