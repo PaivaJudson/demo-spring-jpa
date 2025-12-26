@@ -47,4 +47,9 @@ public class AutorController {
         return autorDao.findAllByNomeOrSobrenome(expressao);
     }
 
+    @GetMapping("total")
+    public Long getTotalDeAutores(){
+        return autorDao.getTotalElements();
+    }
+
 }

@@ -43,6 +43,18 @@ public class Autor implements Serializable {
         this.sobrenome = sobrenome;
     }
 
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @JoinColumn(name = "id_info")
+    private InfoAutor infoAutor;
+
+    public InfoAutor getInfoAutor() {
+        return infoAutor;
+    }
+
+    public void setInfoAutor(InfoAutor infoAutor) {
+        this.infoAutor = infoAutor;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
